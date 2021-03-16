@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'mohis-activation-portal-angular';
+  title = 'Device Activatie portal';
 }

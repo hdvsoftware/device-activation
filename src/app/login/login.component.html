@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                
+                <div>
+                    <label for="username">Username</label>
+                    <input matInput
+                        id="username" 
+                        type="text" 
+                        class="form-control"
+                        formControlName="username">    
+                </div>
+                <div>
+
+                    <label for="password">Password</label>
+                    <input 
+                        id="password" 
+                        type="password" 
+                        class="form-control"
+                        formControlName="password">
+                </div>
+                <hr>
+                <div *ngIf="errorMessage !== undefined">
+                    <span>{{errorMessage}}</span>
+                    <hr>
+                </div>
+                <button class="btn btn-primary">Sign in</button>
+            </form>
+
+
+
+
+        </div>
+    </div>
+</div>

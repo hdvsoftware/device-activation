@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API_BASE_PATH: 'https://localhost:44341'
+  //API_BASE_PATH: 'https://vpn.hdvsoftware.nl:8181/'
 };
 
 /*
