@@ -18,13 +18,14 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
 import { CustomerDetailComponent } from './customer/customer-detail/customer-detail.component';
 import { ApiModule } from './api.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BASE_PATH } from './shared/variables';
 import { environment } from 'src/environments/environment';
 import { UserService } from './shared/api/user.service';
 import { DeviceService } from './shared/api/device.service';
 import { CustomerService } from './shared/api/customer.service';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
+import { CustomAuthInterceptor } from './shared/customauth.interceptor';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
   ],
   providers: [
     { provide: BASE_PATH, useValue: environment.API_BASE_PATH },
+    { provide: HTTP_INTERCEPTORS, useClass: CustomAuthInterceptor, multi: true},
     LoginService, 
     LoginGuard, 
     UserService,

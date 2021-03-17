@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.loginService.logout();
-    window.location.reload();
   }
 
 }

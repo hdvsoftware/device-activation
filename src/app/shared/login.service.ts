@@ -18,6 +18,10 @@ export class LoginService {
         return localStorage.getItem(this.loginTokenKey) !== null;
     }
 
+    getLoginToken() {
+        return localStorage.getItem(this.loginTokenKey);
+    }
+
     login(username: string, password: string): Observable<LoginResponse> {
 
         const loginRequest: LoginRequest = {
@@ -39,6 +43,7 @@ export class LoginService {
 
     logout() {
         localStorage.removeItem(this.loginTokenKey);
+        window.location.reload();
     }
 
 }

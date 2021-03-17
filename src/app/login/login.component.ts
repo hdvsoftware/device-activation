@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.value.password;
     this.loginService.login(username, password).subscribe(
       (result: LoginResponse) => {
+        console.log(result);
         if(result.succes === true) {
           this.router.navigate(['']);
         } else {
