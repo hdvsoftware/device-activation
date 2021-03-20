@@ -1,1 +1,55 @@
-<p>device-edit works!</p>
+<h3>Device {{ isNew ? 'toevoegen' : 'aanpassen'}}</h3>
+<form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
+
+    <div *ngIf="!isNew" [requireRule]="'device-admin'">
+        <label for="customerId">Omgeving</label>
+        <select 
+          name="customerId" 
+          id="customerId" 
+          class="form-control"
+          formControlName="customerId"
+          >
+          <option *ngFor="let customer of customers" value="{{customer.id}}">{{customer.name}}</option>
+        </select>  
+        <!-- <span *ngIf="!projectFormGroup.get('projectName').valid && projectFormGroup.get('projectName').touched">Project name is required</span> -->
+      </div>
+      <div>
+        <label for="uuid">UUID</label>
+        <input 
+          id="uuid" 
+          type="text" 
+          class="form-control"
+          formControlName="uuid"
+          >
+        <!-- <span *ngIf="!projectFormGroup.get('projectName').valid && projectFormGroup.get('projectName').touched">Project name is required</span> -->
+      </div>
+      <div>
+        <label for="projectName">Omschrijving</label>
+        <textarea 
+            type="text" 
+            id="description" 
+            formControlName='description'
+            class="form-control"
+            rows="3"
+            style="resize: none;"
+            >
+        </textarea>
+        <!-- <span *ngIf="!projectFormGroup.get('projectName').valid && projectFormGroup.get('projectName').touched">Project name is required</span> -->
+      </div>
+    <!-- <button class="btn btn-danger" (click)="returnToCustomerPage()">Annuleren</button> -->
+
+      <hr>
+    <div>
+        <button
+            type="submit" 
+            class="btn btn-primary"
+            [disabled]="!deviceForm.valid"
+            >{{ isNew ? 'Toevoegen' : 'Aanpassen'}}</button>
+        <button 
+            type="button"
+            class="btn btn-danger" 
+            [routerLink]="['../../']"
+            >Annuleren</button>
+    </div>
+    
+</form>

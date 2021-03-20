@@ -16,6 +16,7 @@ export interface CustomerDetailViewModel {
     name?: string;
     description?: string;
     code?: string;
+    server?: string;
     devices?: Array<Device>;
     readonly registeredDevices?: number;
     maxDevices?: number;

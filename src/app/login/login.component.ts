@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../shared/login.service';
+import { AuthService } from '../shared/auth.service';
 import { LoginResponse } from '../shared/model/loginResponse';
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private loginService: LoginService) { }
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -31,9 +31,8 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
-    this.loginService.login(username, password).subscribe(
+    this.authService.login(username, password).subscribe(
       (result: LoginResponse) => {
-        console.log(result);
         if(result.succes === true) {
           this.router.navigate(['']);
         } else {

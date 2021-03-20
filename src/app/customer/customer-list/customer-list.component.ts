@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CustomerService } from 'src/app/shared/api/customer.service';
 import { CustomerGridViewModel } from 'src/app/shared/model/customerGridViewModel';
 
@@ -7,7 +9,8 @@ import { CustomerGridViewModel } from 'src/app/shared/model/customerGridViewMode
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.css']
 })
-export class CustomerListComponent implements OnInit {
+export class CustomerListComponent implements OnInit, OnDestroy {
+
   customers: CustomerGridViewModel[];
 /*
 public id: number,
@@ -18,17 +21,39 @@ public id: number,
         public modified:Date,
         public deleted:Date
 */
-  headElements = ['ID','CODE','NAME','DESCRIPTION','CREATED','MODIFIED'];
+  headElements = ['CODE','NAAM','OMSCHRIJVING','AANGEMAAKT','LICENTIES'];
+  private getListSubscription: Subscription;
 
-  constructor(private customerService: CustomerService) { }
+
+  constructor(
+    private router: Router,
+    private customerService: CustomerService) { }
+
+
+  ngOnDestroy(): void {
+    if(this.getListSubscription !== undefined) {
+      this.getListSubscription.unsubscribe();
+    }
+  }
 
   ngOnInit(): void {
-    this.customerService.customerGet().subscribe(
+    this.fetchData();  
+    //this.customers = this.customerService.getCustomers();
+  }
+
+  fetchData() {
+    if(this.getListSubscription !== undefined) {
+      this.getListSubscription.unsubscribe();
+      this.getListSubscription = null;
+    }
+    this.getListSubscription = this.customerService.customerGet().subscribe(
       (result: CustomerGridViewModel[]) => {
         this.customers = result;
       }
     )
-    //this.customers = this.customerService.getCustomers();
   }
 
+  addOmgeving() {
+    this.router.navigate(['new']);
+  }
 }

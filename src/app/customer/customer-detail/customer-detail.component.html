@@ -1,1 +1,64 @@
-<p>customer-detail works!</p>
+
+
+<div *ngIf="customer">
+    <div>
+        <button 
+            [requireRule]="'customer-update'" 
+            [routerLink]="['edit']"
+            class="btn btn-primary" 
+            style="margin-right: 10px;">Aanpassen</button>
+        <!-- <button
+            [requireRule]="'customer-remove'" 
+            class="btn btn-danger"
+            (click)="deleteCustomer()"
+             >Verwijderen</button> -->
+    </div>
+    <div>
+        <h3>Omgeving: {{customer.name}}</h3>
+    </div>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Code</th>
+                <td>{{ customer.code }}</td>
+            </tr>
+            <tr>
+                <th>Omschrijving</th>
+                <td>{{ customer.description }}</td>
+            </tr>
+            <tr>
+                <th>Server</th>
+                <td>{{ customer.Server }}</td>
+            </tr>
+            <tr>
+                <th>Gebruikte licenties</th>
+                <td>{{customer.registeredDevices}} / {{ customer.maxDevices}}</td>
+            </tr>
+            <tr>
+                <th>Aangemaakt op</th>
+                <td>{{ customer.created | date: 'dd-MM-yyyy HH:mm' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>    
+<hr>
+<div 
+    *ngIf="customer"
+    [requireRule]="'device-add'" 
+    >
+        <button 
+        class="btn btn-primary"
+        [disabled]="!customer.hasRemainingLicences"
+        [routerLink]="['device', 'new']"
+        (click)="addDevice()"
+        style="margin-bottom: 15px;"
+        >Device toevoegen</button>
+</div>
+
+<app-device-list *ngIf="customer"
+    [customerId]="customer.id" 
+    [devices]="customer.devices">
+</app-device-list>
+

@@ -24,7 +24,6 @@ import { UpdateCustomerRequest } from '../model/updateCustomerRequest';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
-import { tap } from 'rxjs/operators';
 
 
 @Injectable()
@@ -157,7 +156,6 @@ export class CustomerService {
     public customerGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<CustomerGridViewModel>>>;
     public customerGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<CustomerGridViewModel>>>;
     public customerGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        console.log('customerGet');
         let headers = this.defaultHeaders;
 
         // to determine the Accept header

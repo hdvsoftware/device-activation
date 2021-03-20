@@ -1,4 +1,12 @@
-<table mdbTable>
+<button 
+    class="btn btn-primary" 
+    [routerLink]="['new']"
+    [requireRule]="'customer-add'"
+    style="margin-bottom: 15px;"
+    >Omgeving toevoegen</button>
+
+
+<table class="table">
     <thead>
         <tr>
             <th 
@@ -11,13 +19,15 @@
     </thead>
   
     <tbody>
-        <tr mdbTableCol *ngFor="let customer of customers">
-            <th scope="row">{{customer.id}}</th>
+        <tr 
+            *ngFor="let customer of customers" 
+            [routerLink]="[customer.id]"
+            >
             <td>{{customer.code}}</td>
             <td>{{customer.name}}</td>
             <td>{{customer.description}}</td>
-            <td>{{customer.created}}</td>
-            <td>{{customer.modified}}</td>
+            <td>{{customer.created | date: 'dd-MM-yyyy HH:mm' }}</td>
+            <td>{{customer.registeredDevices}}/{{customer.maxDevices}}</td>
             <!-- <td>{{customer.}}</td> -->
         </tr>
     </tbody>

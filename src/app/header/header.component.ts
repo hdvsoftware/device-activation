@@ -1,29 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoginService } from '../shared/login.service';
+import { Component, Input } from '@angular/core';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() title: string;
 
   constructor(
-    private loginService: LoginService) { 
-    
-  }
-
-  ngOnInit(): void {
-  }
-
-  isLoggedIn() {
-    return this.loginService.isLoggedIn();
+    public authService: AuthService) { 
   }
 
   onLogout() {
-    this.loginService.logout();
+    this.authService.logout();
   }
 
 }

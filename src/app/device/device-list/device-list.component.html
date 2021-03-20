@@ -1,1 +1,25 @@
-<p>device-list works!</p>
+  
+    <table class="table">
+        <thead>
+            <tr>
+                <th 
+                    *ngFor="let head of headElements" 
+                    scope="col"
+                    > 
+                    {{head}}
+                </th>
+            </tr>
+        </thead>
+      
+        <tbody>
+            <tr *ngFor="let device of devices" [routerLink]="['device', device.id]">
+                <td>{{device.uuid}}</td>
+                <td>{{device.description}}</td>
+                <td>{{device.modified  | date: 'dd-MM-yyyy HH:mm' }}</td>
+                <td>{{device.lastConnection | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
+                <!-- <td>{{customer.}}</td> -->
+            </tr>
+        </tbody>
+    
+    
+    </table>
