@@ -70,13 +70,13 @@ export class DeviceEditComponent implements OnInit, OnDestroy {
       uuid: this.deviceForm.value.uuid,
     };
     console.log(addRequest);
-    // this.subscriptions.add(
-    //   this.deviceService.deviceAddDevicePost(addRequest).subscribe(
-    //     () => {
-    //       this.returnToCustomerPage();
-    //     }
-    //   )
-    // );
+    this.subscriptions.add(
+      this.deviceService.deviceAddDevicePost(addRequest).subscribe(
+        () => {
+          this.returnToCustomerPage();
+        }
+      )
+    );
   }
 
   updateDevice() {
@@ -105,7 +105,7 @@ export class DeviceEditComponent implements OnInit, OnDestroy {
   }
 
   returnToCustomerPage() {
-    this.router.navigate(['../'])
+    this.router.navigate(['../'], { relativeTo: this.route})
   }
 
 

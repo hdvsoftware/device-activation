@@ -15,24 +15,20 @@ import { UpdateCustomerRequest } from 'src/app/shared/model/updateCustomerReques
 export class CustomerEditComponent implements OnInit, OnDestroy {
   private customerId:number;
   customerForm: FormGroup;
-  private postDataSubscription: Subscription;
-  private fetchDataSubscription: Subscription;
+  private subscriptions: Subscription;
   isNew = true;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private customerService: CustomerService
-  ) { }
+  ) {
+    this.subscriptions = new Subscription();
+   }
 
 
   ngOnDestroy(): void {
-    if(this.fetchDataSubscription !== undefined) {
-      this.fetchDataSubscription.unsubscribe();
-    }
-    if(this.postDataSubscription !== undefined) {
-      this.postDataSubscription.unsubscribe();
-    }
+    this.subscriptions.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -49,7 +45,7 @@ export class CustomerEditComponent implements OnInit, OnDestroy {
     this.customerId = +this.route.snapshot.params['id'];
     if(!isNaN(this.customerId)) {
       this.isNew = false;
-      this.fetchDataSubscription = 
+      this.subscriptions.add( 
         this.customerService.customerDetailIdGet(this.customerId).subscribe(
           (data: CustomerDetailViewModel) => {
             this.customerForm.patchValue({
@@ -61,6 +57,7 @@ export class CustomerEditComponent implements OnInit, OnDestroy {
             });
           }
         )
+      );
     }
   }
 
@@ -80,14 +77,15 @@ export class CustomerEditComponent implements OnInit, OnDestroy {
       server: this.customerForm.value.server,
       numberOfDevices: this.customerForm.value.maxDevices
     }
-    this.postDataSubscription = 
+    this.subscriptions.add( 
       this.customerService
         .customerUpdateCustomerIdPut(this.customerId, reqBody)
         .subscribe(
           (data: any) => {
             this.router.navigate(['../'])
           }
-        );
+        )
+    )
   }
 
   insertCustomer() {
@@ -98,16 +96,15 @@ export class CustomerEditComponent implements OnInit, OnDestroy {
       server: this.customerForm.value.server,
       numberOfDevices: this.customerForm.value.maxDevices
     };
-    this.postDataSubscription = 
+    this.subscriptions.add( 
       this.customerService
         .customerAddCustomerPost(reqBody)
         .subscribe(
           (data: any) => {
             this.router.navigate(['../'])
           }
-        );
-
-    
+        )
+    )    
   }
 
 }
