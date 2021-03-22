@@ -24,6 +24,17 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
 import { CustomAuthInterceptor } from './shared/customauth.interceptor';
 import { RequireRuleDirective } from './shared/directives/require-rule.directive';
 import { APIS } from './shared/api/api';
+import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { DatePipe } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCardModule} from "@angular/material/card";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -47,7 +58,19 @@ import { APIS } from './shared/api/api';
     AppRoutingModule,
     BrowserAnimationsModule,
     ApiModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSortModule,
+    MatTableModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCardModule,
+    MatRadioModule,
+
+    
   ],
   providers: [
     { provide: BASE_PATH, useValue: environment.API_BASE_PATH },
@@ -55,6 +78,7 @@ import { APIS } from './shared/api/api';
     AuthService, 
     AuthGuard, 
     APIS,
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })

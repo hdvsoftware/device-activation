@@ -3,9 +3,9 @@
 <div *ngIf="customer">
     <div>
         <button 
+            mat-raised-button color="primary"
             [requireRule]="'customer-update'" 
             [routerLink]="['edit']"
-            class="btn btn-primary" 
             style="margin-right: 10px;">Aanpassen</button>
         <!-- <button
             [requireRule]="'customer-remove'" 
@@ -49,7 +49,7 @@
     [requireRule]="'device-add'" 
     >
         <button 
-        class="btn btn-primary"
+        mat-raised-button color="primary"
         [disabled]="!customer.hasRemainingLicences"
         [routerLink]="['device', 'new']"
         style="margin-bottom: 15px;"

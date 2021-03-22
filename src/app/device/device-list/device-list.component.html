@@ -1,4 +1,18 @@
   
+<mat-table [dataSource]="dataSource" #table matSort>
+    <ng-container matColumnDef={{column.id}} *ngFor="let column of columnNames">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{column.value}}</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ getDisplayValue(element, column.id) }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row 
+        *matRowDef="let row; columns: displayedColumns;"
+        [routerLink]="['device', row.id]"
+        ></mat-row>
+</mat-table>
+
+<!-- 
     <table class="table">
         <thead>
             <tr>
@@ -17,9 +31,8 @@
                 <td>{{device.description}}</td>
                 <td>{{device.modified  | date: 'dd-MM-yyyy HH:mm' }}</td>
                 <td>{{device.lastConnection | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
-                <!-- <td>{{customer.}}</td> -->
             </tr>
         </tbody>
     
     
-    </table>
+    </table> -->

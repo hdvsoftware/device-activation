@@ -82,7 +82,7 @@ export class CustomerEditComponent implements OnInit, OnDestroy {
         .customerUpdateCustomerIdPut(this.customerId, reqBody)
         .subscribe(
           (data: any) => {
-            this.router.navigate(['../'])
+            this.router.navigate(['../'], { relativeTo: this.route})
           }
         )
     )
@@ -101,7 +101,7 @@ export class CustomerEditComponent implements OnInit, OnDestroy {
         .customerAddCustomerPost(reqBody)
         .subscribe(
           (data: any) => {
-            this.router.navigate(['../'])
+            this.router.navigate(['../'], { relativeTo: this.route})
           }
         )
     )    

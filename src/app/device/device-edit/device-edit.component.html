@@ -1,55 +1,57 @@
-<h3>Device {{ isNew ? 'toevoegen' : 'aanpassen'}}</h3>
-<form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
+<mat-card class="col-8 mx-auto text-center">
+  <h3>Device {{ isNew ? 'toevoegen' : 'aanpassen'}}</h3>
+  <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
 
     <div *ngIf="!isNew" [requireRule]="'device-admin'">
-        <label for="customerId">Omgeving</label>
-        <select 
-          name="customerId" 
-          id="customerId" 
-          class="form-control"
-          formControlName="customerId"
-          >
-          <option *ngFor="let customer of customers" value="{{customer.id}}">{{customer.name}}</option>
-        </select>  
+      <mat-form-field>
+        <mat-label>Omgeving</mat-label>
+        <mat-select
+          formControlName="customerId">
+          <mat-option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
         <!-- <span *ngIf="!projectFormGroup.get('projectName').valid && projectFormGroup.get('projectName').touched">Project name is required</span> -->
-      </div>
-      <div>
-        <label for="uuid">UUID</label>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>UUID</mat-label>
         <input 
-          id="uuid" 
-          type="text" 
-          class="form-control"
+          matInput 
+          type="text"
           formControlName="uuid"
           >
-        <!-- <span *ngIf="!projectFormGroup.get('projectName').valid && projectFormGroup.get('projectName').touched">Project name is required</span> -->
-      </div>
-      <div>
-        <label for="projectName">Omschrijving</label>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Omschrijving</mat-label>
         <textarea 
-            type="text" 
-            id="description" 
-            formControlName='description'
-            class="form-control"
-            rows="3"
-            style="resize: none;"
-            >
-        </textarea>
-        <!-- <span *ngIf="!projectFormGroup.get('projectName').valid && projectFormGroup.get('projectName').touched">Project name is required</span> -->
-      </div>
-    <!-- <button class="btn btn-danger" (click)="returnToCustomerPage()">Annuleren</button> -->
-
-      <hr>
+          matInput 
+          formControlName="description"
+          rows="3"
+          style="resize: none;"
+          ></textarea>
+      </mat-form-field>
+    </div>
     <div>
         <button
             type="submit" 
-            class="btn btn-primary"
+            mat-flat-button
+            color="primary"
             [disabled]="!deviceForm.valid"
             >{{ isNew ? 'Toevoegen' : 'Aanpassen'}}</button>
         <button 
             type="button"
-            class="btn btn-danger" 
-            [routerLink]="['../../']"
+            mat-flat-button
+            color="warn"
+            [routerLink]="['../']"
             >Annuleren</button>
     </div>
     
-</form>
+  </form>
+</mat-card>
+
+
+
+
+

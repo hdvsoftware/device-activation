@@ -1,37 +1,34 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                
-                <div>
-                    <label for="username">Username</label>
-                    <input matInput
-                        id="username" 
-                        type="text" 
-                        class="form-control"
-                        formControlName="username">    
-                </div>
-                <div>
-
-                    <label for="password">Password</label>
-                    <input 
-                        id="password" 
-                        type="password" 
-                        class="form-control"
-                        formControlName="password">
-                </div>
-                <hr>
-                <div *ngIf="errorMessage !== undefined">
-                    <span>{{errorMessage}}</span>
-                    <hr>
-                </div>
-                <button class="btn btn-primary">Sign in</button>
-            </form>
-
-
-
-
+<mat-card class="col-8 mx-auto text-center">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div>
+            <mat-form-field class="col-5 mt-3 mx-auto">
+                <mat-label>Username</mat-label>
+                <input 
+                    type="text" 
+                    matInput 
+                    formControlName="username" 
+                    >
+            </mat-form-field>
         </div>
-    </div>
-</div>
+        <div>
+            <mat-form-field class="col-5 mt-3 mx-auto">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password" placeholder="password">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-error *ngIf="errorMessage">
+                {{errorMessage}}
+            </mat-error>
+        </div>
+
+        <button
+        [disabled]="!loginForm.valid"
+        mat-flat-button
+        color="primary"
+        type="submit"
+        >Sign in</button>
+    </form>
+
+
+</mat-card>

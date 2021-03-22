@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { LoginResponse } from '../shared/model/loginResponse';
@@ -15,13 +15,25 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
-      'username': new FormControl(null, Validators.required),
-      'password': new FormControl(null, Validators.required)
-    })
+    this.loginForm = this.formBuilder.group({
+      username: [, 
+        { validators: [Validators.required], 
+          updateOn: "change"}
+      ],
+      password: [,
+        { Validators: [Validators.required],
+          updateOn: "change"
+        }
+      ]
+    });
+    // this.loginForm = new FormGroup({
+    //   'username': new FormControl(null, Validators.required),
+    //   'password': new FormControl(null, Validators.required)
+    // })
     this.loginForm.setValue({
       'username': 'test',
       'password': 'test'
