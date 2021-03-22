@@ -1,10 +1,9 @@
 <mat-toolbar style="margin-bottom: 10px;">
-    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button> -->
       <span>{{title}}</span>
       <div>
-          <a mat-button [routerLink]="['omgevingen']"> Omgevingen </a>
+          <a 
+          *ngIf="(authService.loggedInSubject | async) === true"
+          mat-button [routerLink]="['omgevingen']"> Omgevingen </a>
       </div>
       <span class="example-spacer"></span>
       <button 
