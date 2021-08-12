@@ -1,0 +1,64 @@
+﻿
+@using MoHIS.Activation.Portal.Blazor.Client.DataAccess
+@using MoHIS.Activation.Portal.Blazor.Client.Utils
+@using MoHIS.Activation.Shared.Models
+@page "/login"
+@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
+@inject MoHIS.Activation.Portal.Blazor.Client.DataAccess.IApiClient ApiClient
+@inject MoHIS.Activation.Portal.Blazor.Client.AppState AppState
+
+<h1>Login</h1>
+
+<div>
+
+    @*<div>Username: <input type="text" bind="@(loginRequest.Username)" /></div>
+        <div>Password: <input type="password" bind="@(loginRequest.Password)" /></div>*@
+    <div>Username: <input type="text" bind="@Username" /> <input type="text" bind="@Username" /></div>
+    <div>Password: <input type="password" bind="@Password" /></div>
+    <div><input type="button" value="Login" onclick="@Submit" /></div>
+
+</div>
+
+
+@functions {
+    LoginRequest loginRequest = new LoginRequest();
+    private string Username { get; set; } = "";
+    private string Password { get; set; } = "";
+
+    protected override async Task OnInitAsync() {
+        string logintoken = await JavascriptInterop.GetStoredToken();
+        if ("null".Equals(logintoken, StringComparison.InvariantCultureIgnoreCase)) {
+            await JavascriptInterop.DeleteStoredToken();
+            logintoken = null;
+        }
+        if (!string.IsNullOrEmpty(logintoken)) {
+            //UriHelper.NavigateTo("/index");
+            UriHelper.NavigateTo("/customers");
+        }
+    }
+
+    async Task Submit() {
+
+        loginRequest = new LoginRequest() {
+            username = Username,
+            password = Password
+        };
+
+        var loginResponse = await ApiClient.LoginAsync(loginRequest);
+        if (loginResponse == null) {
+            //toon fout?
+            throw new Exception("login failed");
+        }
+        await AppState.SignIn(loginResponse.Token);
+        //await JavascriptInterop.SaveToken(loginResponse.Token);
+        //UriHelper.NavigateTo("/index");
+        UriHelper.NavigateTo("/customers");
+
+    }
+
+
+
+
+
+
+}

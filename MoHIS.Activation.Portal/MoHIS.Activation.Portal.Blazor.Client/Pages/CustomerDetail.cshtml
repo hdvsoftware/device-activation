@@ -1,0 +1,51 @@
+﻿@using MoHIS.Activation.Shared.Data
+@using MoHIS.Activation.Portal.Blazor.Client.Utils
+@page "/customer/detail/{CustomerId:int}"
+
+@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
+@inject MoHIS.Activation.Portal.Blazor.Client.DataAccess.IApiClient ApiClient
+
+<div>
+    <h2>Customer detail!</h2>
+    @if (Customer == null) {
+        <p><em>Loading...</em></p>
+    } else {
+        <div class="container-fluid">
+            <h2>@Customer.Code - @Customer.Name</h2>
+            <p>
+                @Customer.Description
+            </p>
+        </div>
+        <div>
+            
+        </div>
+        <div class="container-fluid">
+            <h3>Gekoppelde devices</h3>
+            <table border="1">
+                <tr>
+                    <th>UUID</th>
+                    <th>Omschrijving</th>
+                </tr>
+                @foreach (var device in Customer.Devices) {
+                    <tr>
+                        <td>@device.UUID</td>
+                        <td>@device.Description</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+</div>
+
+
+@functions {
+    [Parameter] int CustomerId { get; set; }
+    Customer Customer;
+
+    protected override async Task OnInitAsync() {
+        await JavascriptInterop.logToJavascript($"CustomerDetail.OnInitAsync {CustomerId}");
+        string usertoken = await JavascriptInterop.GetStoredToken();
+        ApiClient.SetToken(usertoken);
+        Customer = await ApiClient.GetCustomerDetailAsync(CustomerId);
+    }
+}

@@ -1,0 +1,54 @@
+﻿@using MoHIS.Activation.Shared.Data
+@using MoHIS.Activation.Portal.Blazor.Client.Utils
+@page "/customers"
+
+@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
+@inject MoHIS.Activation.Portal.Blazor.Client.DataAccess.IApiClient ApiClient
+
+<div>
+    <h2>Customer list!</h2>
+    @if (Customers == null) {
+        <p><em>Loading...</em></p>
+    } else {
+        <div class="container-fluid">
+        <table border="1">
+            <tr>
+                <th>Naam</th>
+                <th>Omschrijving</th>
+                <th>Klant code</th>
+                <th>Aangemaakt</th>
+            </tr>
+
+
+
+            @foreach (var env in Customers) {
+                <tr onclick="@(() => CustomerSelected(env.Id))">
+                    <td>@env.Name</td>
+                    <td>@env.Description</td>
+                    <td>@env.Code</td>
+                    <td>@env.Created</td>
+                </tr>
+            }
+        </table>
+        </div>
+    }
+</div>
+
+
+@functions {
+    IEnumerable<Customer> Customers;
+
+    protected override async Task OnInitAsync() {
+        string usertoken = await JavascriptInterop.GetStoredToken();
+        ApiClient.SetToken(usertoken);
+        Customers = await ApiClient.GetCustomersAsync();
+    }
+
+    async Task CustomerSelected(int id) {
+        await JavascriptInterop.logToJavascript($"CustomerSelected: {id}");
+        //await JavascriptInterop.logToJavascript($"CustomerSelected: {id}");
+        //UriHelper.NavigateTo($"/customers");
+        UriHelper.NavigateTo($"/customer/detail/{id}");
+    }
+
+}
