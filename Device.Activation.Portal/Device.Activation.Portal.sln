@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Activation.Shared", "MoHIS.Activation.Shared\Activation.Shared.csproj", "{0A020839-BF65-44EE-8754-758277D048C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Activation.Shared", "Activation.Shared\Activation.Shared.csproj", "{0A020839-BF65-44EE-8754-758277D048C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Activation.API", "MoHIS.Activation.API\Activation.API.csproj", "{3E41B395-36D1-4104-A641-DF83A45C3283}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Activation.API", "Activation.API\Activation.API.csproj", "{3E41B395-36D1-4104-A641-DF83A45C3283}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{21D3DBC2-B95A-4972-8BFC-F5E3E12567E3}"
 EndProject
