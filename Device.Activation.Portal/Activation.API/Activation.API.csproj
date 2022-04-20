@@ -21,11 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MoHIS.Activation.Shared\Activation.Shared.csproj" />
+    <None Remove="..\.dockerignore" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="..\.dockerignore" />
+    <ProjectReference Include="..\Activation.Shared\Activation.Shared.csproj" />
   </ItemGroup>
 
 </Project>
