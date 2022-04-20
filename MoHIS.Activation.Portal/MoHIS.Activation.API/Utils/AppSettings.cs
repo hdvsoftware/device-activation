@@ -1,5 +1,5 @@
 ﻿
-namespace MoHIS.Activation.API.Utils
+namespace Activation.API.Utils
 {
     public class AppSettings
     {

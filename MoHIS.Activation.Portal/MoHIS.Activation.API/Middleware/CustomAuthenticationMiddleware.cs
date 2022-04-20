@@ -5,11 +5,11 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using MoHIS.Activation.API.Security;
-using MoHIS.Activation.API.Services;
-using MoHIS.Activation.Shared;
+using Activation.API.Security;
+using Activation.API.Services;
+using Activation.Shared;
 
-namespace MoHIS.Activation.API.Middleware {
+namespace Activation.API.Middleware {
     public class CustomAuthenticationMiddleware {
         private readonly RequestDelegate next;
 

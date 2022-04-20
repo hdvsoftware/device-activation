@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MoHIS.Activation.Shared.Data {
+namespace Activation.Shared.Data {
     [Table("appuser_approle")]
     public class AppuserApprole {
         [Column("approleid")]

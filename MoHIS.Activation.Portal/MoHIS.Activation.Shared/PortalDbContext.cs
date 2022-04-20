@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MoHIS.Activation.Shared.Data;
+using Activation.Shared.Data;
 using System;
 
-namespace MoHIS.Activation.Shared
+namespace Activation.Shared
 {
     public class PortalDbContext : DbContext
     {

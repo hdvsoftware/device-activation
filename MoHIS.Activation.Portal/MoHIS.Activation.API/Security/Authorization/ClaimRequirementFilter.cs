@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace MoHIS.Activation.API.Security.Authorization {
+namespace Activation.API.Security.Authorization {
     public class ClaimRequirementFilter : IAuthorizationFilter {
 
         readonly Claim _claim;

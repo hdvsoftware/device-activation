@@ -6,13 +6,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using MoHIS.Activation.API.Middleware;
-using MoHIS.Activation.API.Security;
-using MoHIS.Activation.API.Services;
-using MoHIS.Activation.API.Utils;
-using MoHIS.Activation.Shared;
+using Activation.API.Middleware;
+using Activation.API.Security;
+using Activation.API.Services;
+using Activation.API.Utils;
+using Activation.Shared;
 
-namespace MoHIS.Activation.API
+namespace Activation.API
 {
     public class Startup
     {
@@ -35,7 +35,6 @@ namespace MoHIS.Activation.API
             //);
             services.AddCors();
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddJsonOptions(options => {
                     //options.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
@@ -45,7 +44,7 @@ namespace MoHIS.Activation.API
 
         var openApiInfo = new Microsoft.OpenApi.Models.OpenApiInfo()
             {
-                Title = "MoHIS Activation API",
+                Title = "Device Activation API",
                 Version = "v1"
             };
 
@@ -105,10 +104,10 @@ namespace MoHIS.Activation.API
             }
 
             app.UseSwagger();
-            //https://curamlocal.yucat.com/MoHIS/Activation/API/swagger/v1/swagger.json
+            //https://curamlocal.yucat.com/Activation/API/swagger/v1/swagger.json
             app.UseSwaggerUI(c =>
             {
-                //c.SwaggerEndpoint("/mohis/activation/api/swagger/v1/swagger.json", "My API V1");
+                //c.SwaggerEndpoint("/activation/api/swagger/v1/swagger.json", "My API V1");
                 c.SwaggerEndpoint("v1/swagger.json", "My API V1");
                 //c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });

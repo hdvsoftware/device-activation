@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MoHIS.Activation.Shared.Data;
+using Activation.Shared.Data;
 
-namespace MoHIS.Activation.Shared.DataAccess {
+namespace Activation.Shared.DataAccess {
     public interface IAppsessionDAL {
         Task<Appsession> Get(string token);
         Task AddAsync(Appsession appsession);

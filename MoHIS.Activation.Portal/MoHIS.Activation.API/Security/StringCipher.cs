@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoHIS.Activation.API.Security {
+namespace Activation.API.Security {
     public static class StringCipher {
 
         static readonly string SaltKey = "S@LT&KEY";
@@ -26,9 +26,9 @@ namespace MoHIS.Activation.API.Security {
                     cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
                     cryptoStream.FlushFinalBlock();
                     cipherTextBytes = memoryStream.ToArray();
-                    cryptoStream.Close();
+                    //cryptoStream.Close();
                 }
-                memoryStream.Close();
+                //memoryStream.Close();
             }
             return Convert.ToBase64String(cipherTextBytes);
         }
@@ -39,14 +39,22 @@ namespace MoHIS.Activation.API.Security {
             var symmetricKey = new RijndaelManaged() { Mode = CipherMode.CBC, Padding = PaddingMode.None };
 
             var decryptor = symmetricKey.CreateDecryptor(keyBytes, Encoding.ASCII.GetBytes(VIKey));
-            var memoryStream = new MemoryStream(cipherTextBytes);
-            var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
-            byte[] plainTextBytes = new byte[cipherTextBytes.Length];
+            using (var memoryStream = new MemoryStream(cipherTextBytes))
+            {
+                using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                {
+                    byte[] plainTextBytes = new byte[cipherTextBytes.Length];
+                    int decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
+                    return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount).TrimEnd("\0".ToCharArray());
+                }
+            }
+                
+            
 
-            int decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
-            memoryStream.Close();
-            cryptoStream.Close();
-            return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount).TrimEnd("\0".ToCharArray());
+            
+            //memoryStream.Close();
+            //cryptoStream.Close();
+            
         }
     }
 

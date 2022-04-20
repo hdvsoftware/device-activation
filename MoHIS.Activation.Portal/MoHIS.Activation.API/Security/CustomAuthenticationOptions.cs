@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 
-namespace MoHIS.Activation.API.Security {
+namespace Activation.API.Security {
     public class CustomAuthenticationOptions : AuthenticationSchemeOptions {
         public string Realm { get; set; }
         public ClaimsIdentity Identity { get; set; }

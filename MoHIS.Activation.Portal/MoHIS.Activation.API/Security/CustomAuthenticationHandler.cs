@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MoHIS.Activation.API.Services;
-using MoHIS.Activation.Shared.DataAccess;
-using MoHIS.Activation.API.Security.Authorization;
+using Activation.API.Services;
+using Activation.Shared.DataAccess;
+using Activation.API.Security.Authorization;
 
-namespace MoHIS.Activation.API.Security {
+namespace Activation.API.Security {
     public class CustomAuthenticationHandler : AuthenticationHandler<CustomAuthenticationOptions> {
 
         private readonly ICustomAuthenticationService customAuthenticationService;

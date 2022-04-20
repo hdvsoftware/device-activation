@@ -1,5 +1,5 @@
 ﻿
-namespace MoHIS.Activation.Shared.Models
+namespace Activation.Shared.Models
 {
     public class LoginRequest
     {

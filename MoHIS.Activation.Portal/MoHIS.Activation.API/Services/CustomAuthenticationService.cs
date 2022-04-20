@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using MoHIS.Activation.API.Security;
-using MoHIS.Activation.Shared;
-using MoHIS.Activation.Shared.Data;
-using MoHIS.Activation.Shared.DataAccess;
+using Activation.API.Security;
+using Activation.Shared;
+using Activation.Shared.Data;
+using Activation.Shared.DataAccess;
 using CryptoHelper;
 
-namespace MoHIS.Activation.API.Services {
+namespace Activation.API.Services {
 
     public interface ICustomAuthenticationService {
         Task<string> AuthenticateAsync(string username, string password);

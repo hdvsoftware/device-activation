@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "http://localhost/MoHIS/Activation/API",
+      "applicationUrl": "http://localhost/Activation/API",
       "sslPort": 0
     },
     "iisExpress": {
@@ -21,7 +21,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "MoHIS.Activation.API": {
+    "Activation.API": {
       "commandName": "IIS",
       "launchUrl": "api/customer",
       "environmentVariables": {

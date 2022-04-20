@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MoHIS.Activation.Shared.Data;
+using Activation.Shared.Data;
 
-namespace MoHIS.Activation.Shared.Models {
+namespace Activation.Shared.Models {
 
     public class AddDeviceViewModel {
         public object[] Customers { get; set; }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MoHIS.Activation.Shared.DataAccess;
+using Activation.Shared.DataAccess;
 
-namespace MoHIS.Activation.Shared {
+namespace Activation.Shared {
     public static class PortalDbContextExtensions {
         public static void ConfigureDbContext(this IServiceCollection services, Action<DbContextOptionsBuilder> optionsAction = null) {
             services.AddDbContext<PortalDbContext>(optionsAction);

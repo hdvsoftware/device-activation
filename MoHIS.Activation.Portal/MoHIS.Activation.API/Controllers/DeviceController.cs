@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MoHIS.Activation.API.Security.Authorization;
-using MoHIS.Activation.API.Services;
-using MoHIS.Activation.Shared;
-using MoHIS.Activation.Shared.Data;
-using MoHIS.Activation.Shared.DataAccess;
-using MoHIS.Activation.Shared.Models;
+using Activation.API.Security.Authorization;
+using Activation.API.Services;
+using Activation.Shared;
+using Activation.Shared.Data;
+using Activation.Shared.DataAccess;
+using Activation.Shared.Models;
 
-namespace MoHIS.Activation.API.Controllers
+namespace Activation.API.Controllers
 {
     [Authorize]
     [Route("[controller]")]

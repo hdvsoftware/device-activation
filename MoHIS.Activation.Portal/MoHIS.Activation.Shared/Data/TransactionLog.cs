@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace MoHIS.Activation.Shared.Data {
+namespace Activation.Shared.Data {
     [Table("transactionlog")]
     public class TransactionLog {
         [Column("id")]

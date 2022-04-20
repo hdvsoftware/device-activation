@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
-using MoHIS.Activation.Shared.Data;
+using Activation.Shared.Data;
 
-namespace MoHIS.Activation.Shared.Models {
+namespace Activation.Shared.Models {
 
     public class AddUserViewModel {
         public object[] Customers { get; }
