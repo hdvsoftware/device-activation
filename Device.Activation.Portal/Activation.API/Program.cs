@@ -20,6 +20,16 @@ namespace Activation.API
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((hostingContext, config) =>
+            {
+                if(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true")
+                {
+                    config.AddJsonFile($"appsettings.docker.json", optional: true, reloadOnChange: true);
+                }
+
+                
+            }
+            )
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
