@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Activation.API", "Activation.API\Activation.API.csproj", "{3E41B395-36D1-4104-A641-DF83A45C3283}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{21D3DBC2-B95A-4972-8BFC-F5E3E12567E3}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{E37B204F-2827-4FEB-9DE5-F5CF6C37B0BD}"
 	ProjectSection(SolutionItems) = preProject

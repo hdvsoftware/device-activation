@@ -11,6 +11,7 @@ using Activation.API.Security;
 using Activation.API.Services;
 using Activation.API.Utils;
 using Activation.Shared;
+using System;
 
 namespace Activation.API
 {
@@ -19,6 +20,7 @@ namespace Activation.API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
         public IConfiguration Configuration { get; }
@@ -69,7 +71,7 @@ namespace Activation.API
 
             var databaseConnectionString = Configuration["DatabaseConnectionString"];
             //databaseConnectionString = "Server=localhost;Port=5432;Database=dummy;User Id=dummy;Password=dummy";
-            services.ConfigureDbContext(options => options.UseNpgsql(databaseConnectionString));
+            services.ConfigureDbContext(options => options.UseNpgsql(databaseConnectionString)) ;
 
             //services.AddDbContext<PortalDbContext>(options => options.UseNpgsql(connectionString));
             // configure strongly typed settings objects
@@ -111,6 +113,7 @@ namespace Activation.API
                 c.SwaggerEndpoint("v1/swagger.json", "My API V1");
                 //c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+            
 
             //app.UseHttpsRedirection();
 

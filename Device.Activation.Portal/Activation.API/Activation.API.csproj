@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="..\.dockerignore" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Activation.Shared\Activation.Shared.csproj" />
   </ItemGroup>
 
