@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API_BASE_PATH: 'https://localhost:44341'
+  // API_BASE_PATH: 'https://localhost:44341'
+  API_BASE_PATH: 'http://localhost:8080'
   //API_BASE_PATH: 'https://vpn.hdvsoftware.nl:8181/'
 };
 
