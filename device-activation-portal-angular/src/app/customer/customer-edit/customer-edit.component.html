@@ -1,4 +1,4 @@
-<mat-card class="col-8 mx-auto text-center">
+<mat-card appearance="fill">
     <h3>Omgeving {{ isNew ? 'toevoegen' : 'aanpassen'}}</h3>
     <form [formGroup]="customerForm"  (ngSubmit)="onSubmit()">
 
@@ -50,7 +50,7 @@
                     >
             </mat-form-field>
         </div>
-        <div class="row">
+        <div>
             <button 
                 mat-raised-button color="primary"
                 type="submit"
